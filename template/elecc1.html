@@ -1,0 +1,46 @@
+<html>
+    <head>
+        Opinion del cliente
+    </head>
+    <body>        
+        <form id="form">
+            <label for="description">Registrese y de su opinion</label><br>
+            Nombre: <br>
+            <input type = "text" id="name" name = "name"><br>
+            Apellidos:<br>
+            <input type = "text" id="apellidos" name = "apellidos"><br>
+            Sexo:<br>
+            M<input type = "radio" id="sexo" name = "sexo" value="masculino">F
+            <input type = "radio" id="sexo" name = "sexo" value="femenino"><br>
+            Email:<br>
+            <input type = "text" id="email" name = "email"><br>
+            Numero de Documento:<br>
+            <input type="number" id = "ndocumento" name = "ndocumento"><br>
+            Califiquenos:<br>
+            Del 1 al 10 <br>
+            <input type="number" id = "calificacion" name = "calificacion"><br>         
+            <input type = "submit" id="submit" name = "submit">
+        </form>
+    </body>
+
+    <script>
+        document.getElementById("form").onsubmit=function(e){
+            e.preventDefault();
+            fetch('/create/formulario',{
+                method: 'POST',
+                body: JSON.stringify({
+                    'name':document.getElementById('name').value,
+                    'apellidos': document.getElementById('apellidos').value,
+                    'sexo' : document.getElementById('sexo').value,
+                    'edad' :document.getElementById('edad').value,
+                    'email': document.getElementById('email').value,
+                    'ndocumento' : document.getElementById('ndocumento').value,
+                    'calificacion' :document.getElementById('calificacion').value
+                }),
+                headers:{
+                    'Content-Type':'application/json'
+                }
+            })    
+        }
+    </script>
+</html>
